@@ -9,3 +9,8 @@ This data treasure trove was then entrusted to me, Peter Pandey, a marketing dat
 decisions and drive the growth trajectory of our beverage startup.
 In my analysis, I delved into various aspects of consumer behavior, including preferences for purchase location, consumption motivations, and overall brand perception. 
 Additionally, employing SQL queries, I extracted valuable demographic insights across diverse marketing channels, providing a holistic view of our target audience.
+
+Deployed SQL to conduct comprehensive customer data analysis, including preferences for purchase location, consumption motivations, and overall brand perception.
+Employed SQL queries to extract valuable demographic insights across diverse marketing channels.
+Identified Bangalore as the predominant customer base at 28.3%, contrasting with Lucknow's minimal representation at 1.73%.
+Demonstrated proficiency in Power BI, leveraging advanced visualization techniques to create informative charts and derive actionable insights for optimizing business performance.
