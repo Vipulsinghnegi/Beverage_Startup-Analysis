@@ -1,0 +1,96 @@
+# Write a query to count the total no of currents brands ?
+select count(distinct Current_brands) as totalAnotherBrands
+from fact_survey_responses;
+
+# Write a query to count the total no of marketing channels ?
+select count(distinct Marketing_channels) as totalMarketingSource
+from fact_survey_responses;
+
+# Write a query to find distinct ages ?
+select distinct age as age
+from repondents;
+
+# Find the total no of customers according to the group of age ?
+select age , count(*) as totalCustomers
+from repondents
+group by age;
+
+# Write a query to find the distinct gender ?
+select distinct gender as gender
+from repondents ;
+
+# Find the total no of males ,females and non-binary customers ?
+select gender, count(*) as total
+from repondents
+group by gender
+order by total desc;
+
+# Find the total cities where the beverages sold ?
+select count(distinct city) as city
+from cities;
+
+# Which ingredients are most demanded by customers ?
+select ingredients_expected, count(*) as total
+from fact_survey_responses
+group by ingredients_expected
+order by total desc;
+
+# Find the total no of customers according to age for the improvements desired ?
+select f.improvements_desired , r.age, count(f.respondent_id) as totalPerson 
+from fact_survey_responses f 
+left join repondents r 
+on f.Respondent_ID = r.Respondent_ID
+group by f.improvements_desired, r.age;
+
+# Find the total no of customers according to improvements desired ?
+select improvements_desired  ,count(respondent_id) as totalPerson
+from fact_survey_responses
+group by improvements_desired;
+
+# Retrieve the consumption reason with the most no of customers ?
+select Consume_reason, count(*) as total
+from fact_survey_responses
+group by consume_reason
+
+# Find the total no of customers according to packaging preference ?
+select packaging_preference  ,count(respondent_id) as totalPerson
+from fact_survey_responses
+group by packaging_preference;
+
+# Find the total no of customers according to purchase location ?
+select purchase_location  ,count(respondent_id) as totalPerson,  
+count(respondent_id) * 100 / (select count( * ) from fact_survey_responses ) 
+as percentage
+from fact_survey_responses 
+group by Purchase_location;
+
+# Find the total no of customers who cited(mention) brand preference as their reason for selection ?
+select reasons_for_choosing_brands, count(*) as total
+from fact_survey_responses
+group by reasons_for_choosing_brands
+order by total desc;
+
+# Which city has more no of customers ?
+select c.city_id , c.city, count(distinct f.respondent_id) as totalCustomers
+from fact_survey_responses f
+left join repondents r 
+on f.respondent_id = r.respondent_id
+left join cities c
+on c.city_id = r.city_id
+group by r.city_id, c.city
+order by totalCustomers desc;
+
+# Total no of respondents among cities ?
+select  c.city, count(distinct r.respondent_id) as totalCustomers
+from cities c
+left join repondents r 
+on c.city_id = r.city_id
+group by c.city
+order by totalCustomers desc;
+
+# which packaging loved by most of the customers and which is loved by most should be display in top?
+select packaging_preference, count(*) as total_customers
+from fact_survey_responses
+group by packaging_preference
+order by total_customers desc;
+
