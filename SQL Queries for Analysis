@@ -2,10 +2,6 @@
 select count(distinct Current_brands) as totalAnotherBrands
 from fact_survey_responses;
 
-# Write a query to count the total no of marketing channels ?
-select count(distinct Marketing_channels) as totalMarketingSource
-from fact_survey_responses;
-
 # Write a query to find distinct ages ?
 select distinct age as age
 from repondents;
@@ -24,6 +20,16 @@ select gender, count(*) as total
 from repondents
 group by gender
 order by total desc;
+
+# Write a query to count the total no of marketing channels ?
+select count(distinct Marketing_channels) as totalMarketingSource
+from fact_survey_responses;
+
+# Which marketing channel can be used to reach more customers?
+select marketing_channels, count(respondent_id) as total_responses
+from fact_survey_responses
+group by Marketing_channels
+order by total_responses desc;
 
 # Find the total cities where the beverages sold ?
 select count(distinct city) as city
@@ -62,6 +68,20 @@ select reasons_for_choosing_brands, count(*) as total
 from fact_survey_responses
 group by reasons_for_choosing_brands
 order by total desc;
+
+# What are the primary reasons consumers prefer those brands over ours?
+select current_brands,reasons_for_choosing_brands, count(respondent_id) as total_respondents
+from fact_survey_responses
+group by Current_brands,reasons_for_choosing_brands
+order by total_respondents desc;
+
+# Which area of business should we focus more on our product development?
+select count(respondent_id) as total_respondents,reasons_for_choosing_brands
+from fact_survey_responses
+where Current_brands = "codex"
+group by Reasons_for_choosing_brands
+order by total_respondents asc ;
+
 
 # Total no of respondents among cities ?
 select  c.city, count(distinct r.respondent_id) as totalCustomers
