@@ -57,13 +57,6 @@ select packaging_preference  ,count(respondent_id) as totalPerson
 from fact_survey_responses
 group by packaging_preference;
 
-# Find the total no of customers according to purchase location ?
-select purchase_location  ,count(respondent_id) as totalPerson,  
-count(respondent_id) * 100 / (select count( * ) from fact_survey_responses ) 
-as percentage
-from fact_survey_responses 
-group by Purchase_location;
-
 # Find the total no of customers who cited(mention) brand preference as their reason for selection ?
 select reasons_for_choosing_brands, count(*) as total
 from fact_survey_responses
