@@ -70,16 +70,6 @@ from fact_survey_responses
 group by reasons_for_choosing_brands
 order by total desc;
 
-# Which city has more no of customers ?
-select c.city_id , c.city, count(distinct f.respondent_id) as totalCustomers
-from fact_survey_responses f
-left join repondents r 
-on f.respondent_id = r.respondent_id
-left join cities c
-on c.city_id = r.city_id
-group by r.city_id, c.city
-order by totalCustomers desc;
-
 # Total no of respondents among cities ?
 select  c.city, count(distinct r.respondent_id) as totalCustomers
 from cities c
